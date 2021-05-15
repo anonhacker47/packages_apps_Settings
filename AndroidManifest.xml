@@ -108,6 +108,8 @@
     <uses-permission android:name="android.permission.READ_DREAM_STATE" />
     <uses-permission android:name="android.permission.READ_DREAM_SUPPRESSION" />
 
+    <protected-broadcast android:name="com.android.systemui.doze.pulse" />
+
     <!-- Face Unlock -->
     <uses-permission android:name="com.android.settings.FACE_UNLOCK"/>
     <permission android:name="com.android.settings.FACE_UNLOCK" android:protectionLevel="signatureOrSystem"/>
@@ -3477,6 +3479,15 @@
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.legion.settings.LegionSettings" />
         </activity>
+
+        <receiver android:name="com.legion.settings.fragments.XBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+               <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.legions.settings.fragments.XAmbientService"
+                android:permission="XAmbientService">
 
         <!-- Face unlock -->
         <activity android:name="com.android.settings.custom.biometrics.face.FaceEnrollActivity"
